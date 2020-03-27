@@ -5,10 +5,39 @@
 </head>
 <body>
 <div>
-    <h1>{{welcome}}</h1>
+    <h2>{{welcome}}</h2>
+</div>
+<div style="margin-bottom: 15px">
+    <a href="greeting">Greeting for a stranger</a>
 </div>
 <div>
-    <a href="greeting">Greeting for a stranger</a>
+    <form method="post" action="add">
+        <label>
+            <input type="text" name="text" placeholder="Enter a message:"/>
+        </label>
+        <label>
+            <input type="text" name="tag" placeholder="Enter a tag:"/>
+        </label>
+        <button type="submit">Add</button>
+    </form>
+</div>
+<div>
+    <form method="post" action="filter">
+        <label>
+            <input type="text" name="filter" placeholder="Enter your request"/>
+        </label>
+        <button type="submit">Find</button>
+    </form>
+</div>
+<div>
+    <p style="margin-bottom: 5px; font-size: 18px; font-weight: bold">List of messages:</p>
+    {{#messages}}
+        <div>
+            <b>{{id}}</b>
+            <span>{{text}}</span>
+            [<i>{{tag}}</i>]
+        </div>
+    {{/messages}}
 </div>
 </body>
 </html>
