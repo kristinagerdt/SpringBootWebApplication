@@ -1,6 +1,6 @@
-package org.example.sweater;
+package org.example.sweater.controller;
 
-import org.example.sweater.domain.Message;
+import org.example.sweater.entities.Message;
 import org.example.sweater.repositories.MessageRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,33 +10,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Map;
 
 @Controller
-public class GreetingController {
+public class MessageController {
     private MessageRepository messageRepository;
 
-    public GreetingController(MessageRepository messageRepository) {
+    public MessageController(MessageRepository messageRepository) {
         this.messageRepository = messageRepository;
     }
 
-    @GetMapping("/greeting")
-    public String greeting(@RequestParam(name = "userName", required = false, defaultValue = "World")
-                                   String userName, Map<String, String> model) {
-        model.put("userName", userName);
-        return "greeting";
-    }
-
-    @GetMapping //("/")
-    public String main(Map<String, Object> model) {
+    @GetMapping("/message")
+    public String message(Map<String, Object> model) {
         model.put("welcome", "Welcome to my beautiful page!");
         Iterable<Message> messages = messageRepository.findAll();
         model.put("messages", messages);
-        return "main";
+        return "message";
     }
 
     @PostMapping("add")
     public String add(@RequestParam String text, @RequestParam String tag, Map<String, Object> model) {
         Message message = new Message(text, tag);
         messageRepository.save(message);
-        return main(model);
+        return message(model);
     }
 
     @PostMapping("filter")
@@ -46,6 +39,6 @@ public class GreetingController {
         if (filter != null && !filter.isEmpty()) messages = messageRepository.findByTag(filter);
         else messages = messageRepository.findAll();
         model.put("messages", messages);
-        return "main";
+        return "message";
     }
 }

@@ -1,31 +1,28 @@
 <html>
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>Message</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
 <div>
     <h2>{{welcome}}</h2>
-</div>
-<div style="margin-bottom: 15px">
-    <a href="greeting">Greeting for a stranger</a>
+    <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+        <input type="submit" value="Sign Out"/>
+    </form>
 </div>
 <div>
     <form method="post" action="add">
-        <label>
-            <input type="text" name="text" placeholder="Enter a message:"/>
-        </label>
-        <label>
-            <input type="text" name="tag" placeholder="Enter a tag:"/>
-        </label>
+        <label><input type="text" name="text" placeholder="Enter a message"/></label>
+        <label><input type="text" name="tag" placeholder="Enter a tag"/></label>
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
         <button type="submit">Add</button>
     </form>
 </div>
 <div>
     <form method="post" action="filter">
-        <label>
-            <input type="text" name="filter" placeholder="Enter your request"/>
-        </label>
+        <label><input type="text" name="filter" placeholder="Enter your request"/></label>
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
         <button type="submit">Find</button>
     </form>
 </div>
