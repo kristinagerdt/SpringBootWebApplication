@@ -4,11 +4,11 @@ import org.example.sweater.entities.Role;
 import org.example.sweater.entities.User;
 import org.example.sweater.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Collections;
-import java.util.Map;
 
 @Controller
 public class RegistrationController {
@@ -24,13 +24,12 @@ public class RegistrationController {
     }
 
     @PostMapping("/registration")
-    public String addUser(User user, Map<String, Object> model) {
+    public String addUser(User user, Model model) {
         User userFromDB = userRepository.findByUserName(user.getUserName());
         if (userFromDB != null) {
-            model.put("message", "User exists already!");
+            model.addAttribute("message", "User exists already!");
             return "registration";
         }
-
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
         userRepository.save(user);
