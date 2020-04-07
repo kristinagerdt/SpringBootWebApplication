@@ -28,7 +28,7 @@ public class MessageController {
         return "message";
     }
 
-    @PostMapping("add")
+    @PostMapping("/add")
     public String add(
             @AuthenticationPrincipal User user,
             @RequestParam String text, @RequestParam String tag,
