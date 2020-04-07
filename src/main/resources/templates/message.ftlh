@@ -5,9 +5,10 @@
     <div>
         <h2>${welcome}</h2>
         <@auth.logout/>
+        <p style="margin: -20px 0 10px 80px"><a href="/user">User list</a></p>
     </div>
     <div>
-        <form method="post" action="add">
+        <form action="/add" method="post">
             <label><input type="text" name="text" placeholder="Enter a message"/></label>
             <label><input type="text" name="tag" placeholder="Enter a tag"/></label>
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
@@ -15,7 +16,7 @@
         </form>
     </div>
     <div>
-        <form method="get" action="message">
+        <form action="/message" method="get">
             <label><input type="text" name="filter" value="${filter}" placeholder="Enter your request"/></label>
             <button type="submit">Find</button>
         </form>
