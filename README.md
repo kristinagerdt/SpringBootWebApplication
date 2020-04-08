@@ -6,4 +6,4 @@ Spring Boot Web Application (MVC)
 - lesson-4: @JoinColumn, @ManyToOne, UserService
 - lesson-5: Freemarker instead Mustache template
 - lesson-6: Admin panel, user roles, access restriction
-- lesson-7: 
+- lesson-7: uploading files to the server and distributing statics
