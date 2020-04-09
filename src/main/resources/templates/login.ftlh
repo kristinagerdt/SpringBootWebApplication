@@ -2,7 +2,6 @@
 <#import "parts/auth.ftlh" as auth>
 
 <@common.page>
-    <h2>Login page</h2>
-    <@auth.login "/login" "Sign In"/>
-    <p style="margin: -20px 0 10px 80px"><a href="/registration">Add new user</a></p>
+    <h4>Login page</h4>
+    <@auth.login "/login" "Sign In" "username" false/>
 </@common.page>
